@@ -188,7 +188,7 @@ iframe.vds-youtube[data-no-controls] {
 
 /* Buffering Track Style */
 :where(.vds-buffering-indicator) :where(.vds-buffering-track, circle[data-part=track]) {
-  color: var(--media-buffering-track-color, #f5f5f5);
+  color: var(--media-buffering-track-color, #ff0000);
   opacity: var(--media-buffering-track-opacity, 0.25);
   stroke-width: var(--media-buffering-track-width, 8);
 }
@@ -2033,7 +2033,7 @@ iframe.vds-youtube[data-no-controls] {
   left: 0;
   width: var(--slider-progress, 0%);
   will-change: width;
-  background-color: var(--media-slider-track-progress-bg, rgb(255 255 255 / .5));
+  background-color: var(--media-slider-track-progress-bg, rgb(255 0 0 / .5));
 }
 
 /* Hide Slider Value When Media Cannot Play */
