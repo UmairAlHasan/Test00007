@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Video Player</title>
-    <!-- Include VidStack player styles -->
-    <link rel="stylesheet" href="theme.css">
-    <link rel="stylesheet" href="video.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <title>Title</title> -->
+<!-- Include VidStack player styles -->
+<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="video.css">
 </head>
 <body>
-    <!-- Player container -->
-    <div id="playerContainer"></div>
 
-    <!-- Include VidStack player script -->
-    <script type="module">
+<!-- Player container -->
+<div id="playerContainer"></div>
+
+<!-- Include VidStack player script -->
+<script type="module">
         import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
 
-        async function createPlayer() {
-            const player = await VidstackPlayer.create({
-                target: '#playerContainer',
-                title: '',
-                src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
-                // Optional: Add a poster image
-                poster: 'anime.jpg',
-                layout: new VidstackPlayerLayout({
-                    // Optional: Add thumbnails
-                    thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
-                }),
-                tracks: [
-                    {
-                        kind: 'subtitles',    // Define this track as subtitles
-                        label: 'English',     // Label for the track
-                        src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt', // Path to your .vtt file
-                        default: true         // Optionally set as the default track
-                    }
-                ]
-            });
-        }
+async function createPlayer() {
+const player = await VidstackPlayer.create({
+target: '#playerContainer',
+title: '',
+src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
 
-        createPlayer();
-    </script>
+// Optional: Add a poster image
+poster: 'anime.jpg',
+layout: new VidstackPlayerLayout({
+
+// Optional: Add thumbnails
+thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
+}),
+                
+tracks: [
+{
+    
+kind: 'subtitles',    // Define this track as subtitles
+label: 'English',     // Label for the track
+src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt',
+default: true         // Optionally set as the default track
+
+}
+]
+});
+}
+
+createPlayer();
+
+</script>
 </body>
 </html>
