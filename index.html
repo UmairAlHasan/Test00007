@@ -20,13 +20,21 @@
             const player = await VidstackPlayer.create({
                 target: '#playerContainer',
                 title: '',
-                src: 'https://firebasestorage.googleapis.com/v0/b/kaiju-no-8.appspot.com/o/Solo%20Leveling%20S01E01.mp4?alt=media&token=d93e5208-22ab-4c74-80e8-9aa5575ab45f',
+                src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
                 // Optional: Add a poster image
                 poster: 'anime.jpg',
                 layout: new VidstackPlayerLayout({
                     // Optional: Add thumbnails
                     thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
-                })
+                }),
+                tracks: [
+                    {
+                        kind: 'subtitles',    // Define this track as subtitles
+                        label: 'English',     // Label for the track
+                        src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt', // Path to your .vtt file
+                        default: true         // Optionally set as the default track
+                    }
+                ]
             });
         }
 
