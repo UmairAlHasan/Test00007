@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Player</title>
+    <!-- Include VidStack player styles -->
+    <link rel="stylesheet" href="/theme.css">
+    <link rel="stylesheet" href="/video.css">
+</head>
+<body>
+    <!-- Player container -->
+    <div id="playerContainer"></div>
+
+    <!-- Include VidStack player script -->
+    <script type="module">
+        import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
+
+        async function createPlayer() {
+            const player = await VidstackPlayer.create({
+                target: '#playerContainer',
+                title: '',
+                src: 'https://firebasestorage.googleapis.com/v0/b/kaiju-no-8.appspot.com/o/Solo%20Leveling%20S01E01.mp4?alt=media&token=d93e5208-22ab-4c74-80e8-9aa5575ab45f',
+                // Optional: Add a poster image
+                poster: 'anime.jpg',
+                layout: new VidstackPlayerLayout({
+                    // Optional: Add thumbnails
+                    thumbnails: 'https://example.com/thumbnails.vtt'
+                })
+            });
+        }
+
+        createPlayer();
+    </script>
+</body>
+</html>
