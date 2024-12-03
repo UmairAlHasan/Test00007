@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- <title>Title</title> -->
 <!-- Include VidStack player styles -->
 <link rel="stylesheet" href="theme.css">
 <link rel="stylesheet" href="video.css">
@@ -14,57 +15,37 @@
 
 <!-- Include VidStack player script -->
 <script type="module">
-    import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
+        import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
 
-    async function createPlayer() {
-        const player = await VidstackPlayer.create({
-            target: '#playerContainer',
-            title: 'Sprite Fight',
-            layout: new VidstackPlayerLayout({
-                // Optional: Add thumbnails for the video player
-                thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
-            }),
+async function createPlayer() {
+const player = await VidstackPlayer.create({
+target: '#playerContainer',
+title: '',
+src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
 
-            // Define the source with multiple qualities
-            sources: [
-                {
-                    src: 'https://files.vidstack.io/sprite-fight/1080p.mp4',
-                    type: 'video/mp4',
-                    label: '1080p',
-                    quality: 1080
-                },
-                {
-                    src: 'https://files.vidstack.io/sprite-fight/720p.mp4',
-                    type: 'video/mp4',
-                    label: '720p',
-                    quality: 720
-                },
-                {
-                    src: 'https://files.vidstack.io/sprite-fight/480p.mp4',
-                    type: 'video/mp4',
-                    label: '480p',
-                    quality: 480
-                }
-            ],
+// Optional: Add a poster image
+poster: 'anime.jpg',
+layout: new VidstackPlayerLayout({
 
-            // Optional: Add subtitle tracks
-            tracks: [
-                {
-                    kind: 'subtitles',
-                    label: 'English',
-                    src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt',
-                    default: true // Optionally set as the default track
-                }
-            ],
+// Optional: Add thumbnails
+thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
+}),
+                
+tracks: [
+{
+    
+kind: 'subtitles',    // Define this track as subtitles
+label: 'English',     // Label for the track
+src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt',
+default: true         // Optionally set as the default track
 
-            // Enable the quality selector for the player
-            controls: {
-                qualitySelector: true
-            }
-        });
-    }
+}
+]
+});
+}
 
-    createPlayer();
+createPlayer();
+
 </script>
 </body>
 </html>
