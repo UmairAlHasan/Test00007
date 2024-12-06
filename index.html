@@ -4,62 +4,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Vidstack Player</title>
-  <!-- Vidstack Player Scripts -->
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@vidstack/player"></script>
+
   <!-- Vidstack Player Styles -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vidstack/player/styles/default/theme.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vidstack/player/styles/default/layouts/audio.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vidstack/player/styles/default/layouts/video.css">
+
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background-color: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background-color: #121212;
     }
 
-    vds-media {
+    media-player {
       width: 80%;
       max-width: 800px;
-      aspect-ratio: 16/9;
-      background: #000;
+      aspect-ratio: 16 / 9;
+      background-color: black;
     }
   </style>
 </head>
 <body>
-  <!-- Player Target -->
-  <vds-media>
-    <vds-video id="videoPlayer" controls>
-      <!-- Poster Image -->
-      <vds-poster src="https://files.vidstack.io/sprite-fight/poster.webp"></vds-poster>
-      <!-- Video Source -->
-      <vds-source
-        src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"
-        type="application/vnd.apple.mpegurl">
-      </vds-source>
-      <!-- Tracks -->
-      <vds-track
+  <!-- Vidstack Player -->
+  <media-player
+    view-type="video"
+    stream-type="on-demand"
+    log-level="warn"
+    crossorigin
+    playsinline
+    title="Sprite Fight"
+    poster="https://files.vidstack.io/sprite-fight/poster.webp"
+  >
+    <media-provider>
+      <media-poster class="vds-poster"></media-poster>
+      <source src="https://files.vidstack.io/sprite-fight/hls/stream.m3u8" type="application/vnd.apple.mpegurl" />
+      <track
         src="https://files.vidstack.io/sprite-fight/subs/english.vtt"
-        kind="subtitles"
-        srclang="en"
         label="English"
-        default>
-      </vds-track>
-      <vds-track
-        src="https://files.vidstack.io/sprite-fight/subs/spanish.vtt"
+        language="en-US"
         kind="subtitles"
-        srclang="es"
-        label="Spanish">
-      </vds-track>
-    </vds-video>
-  </vds-media>
+        default
+      />
+      <track
+        src="https://files.vidstack.io/sprite-fight/subs/spanish.vtt"
+        label="Spanish"
+        language="es-ES"
+        kind="subtitles"
+      />
+      <track
+        src="https://files.vidstack.io/sprite-fight/chapters.vtt"
+        language="en-US"
+        kind="chapters"
+        default
+      />
+    </media-provider>
+    <media-video-layout
+      thumbnails="https://files.vidstack.io/sprite-fight/thumbnails.vtt"
+    ></media-video-layout>
+  </media-player>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const player = document.querySelector('vds-media');
-      console.log('Vidstack Player Initialized:', player);
-    });
+  <!-- Vidstack Player Script -->
+  <script type="module">
+    import 'https://cdn.jsdelivr.net/npm/@vidstack/player';
+    import 'https://cdn.jsdelivr.net/npm/@vidstack/player/layouts/default';
+    import 'https://cdn.jsdelivr.net/npm/@vidstack/player/ui';
   </script>
 </body>
 </html>
