@@ -1,52 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- <title>Title</title> -->
-<!-- Include VidStack player styles -->
-<link rel="stylesheet" href="theme.css">
-<link rel="stylesheet" href="video.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vidstack Player Example</title>
+  <!-- Vidstack Player Script -->
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@vidstack/player"></script>
+  <!-- Vidstack Player Styles -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vidstack/player/styles/default/theme.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@vidstack/player/styles/default/layouts/video.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #121212;
+    }
+    vds-media {
+      width: 80%;
+      max-width: 800px;
+      aspect-ratio: 16/9;
+      background: #000;
+    }
+  </style>
 </head>
 <body>
+  <!-- Player Target -->
+  <vds-media>
+    <vds-video
+      src="https://files.vidstack.io/sprite-fight/hls/stream.m3u8"
+      poster="https://files.vidstack.io/sprite-fight/poster.webp"
+      controls>
+    </vds-video>
+  </vds-media>
 
-<!-- Player container -->
-<div id="playerContainer"></div>
+  <script>
+    // Configure Player with Tracks
+    document.addEventListener('DOMContentLoaded', async () => {
+      const video = document.querySelector('vds-video');
+      
+      // Add Subtitles and Chapters
+      video.tracks = [
+        {
+          src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt',
+          label: 'English',
+          language: 'en-US',
+          kind: 'subtitles',
+          type: 'vtt',
+          default: true,
+        },
+        {
+          src: 'https://files.vidstack.io/sprite-fight/subs/spanish.vtt',
+          label: 'Spanish',
+          language: 'es-ES',
+          kind: 'subtitles',
+          type: 'vtt',
+        },
+        {
+          src: 'https://files.vidstack.io/sprite-fight/chapters.vtt',
+          language: 'en-US',
+          kind: 'chapters',
+          type: 'vtt',
+          default: true,
+        },
+      ];
 
-<!-- Include VidStack player script -->
-<script type="module">
-        import { VidstackPlayer, VidstackPlayerLayout } from 'https://cdn.vidstack.io/player';
-
-async function createPlayer() {
-const player = await VidstackPlayer.create({
-target: '#playerContainer',
-title: 'Spirit Fight',
-src: 'https://stream.mux.com/VZtzUzGRv02OhRnZCxcNg49OilvolTqdnFLEqBsTwaxU.m3u8',
-
-// Optional: Add a poster image
-poster: 'anime.jpg',
-layout: new VidstackPlayerLayout({
-
-// Optional: Add thumbnails
-thumbnails: 'https://files.vidstack.io/sprite-fight/thumbnails.vtt'
-}),
-                
-tracks: [
-{
-    
-kind: 'subtitles',    // Define this track as subtitles
-label: 'English',     // Label for the track
-src: 'https://files.vidstack.io/sprite-fight/subs/english.vtt',
-default: true         // Optionally set as the default track
-
-}
-]
-});
-}
-
-createPlayer();
-
-</script>
-<script type="module" src="https://cdn.jsdelivr.net/npm/vidstack/dist/cdn/prod.min.js"></script>
+      console.log('Vidstack Player initialized with subtitles and chapters.');
+    });
+  </script>
 </body>
 </html>
